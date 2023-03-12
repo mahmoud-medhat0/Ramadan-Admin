@@ -148,7 +148,7 @@
     </nav>
 
     <section class="main_content dashboard_part large_header_bg">
-
+@include('messages.message')
         <div class="container-fluid g-0" bis_skin_checked="1">
             <div class="row" bis_skin_checked="1">
                 <div class="col-lg-12 p-0 " bis_skin_checked="1">
@@ -159,6 +159,11 @@
                         <div class="line_icon open_miniSide d-none d-lg-block" bis_skin_checked="1">
                             <img src="{{ asset('img/line_img.png')}}" alt="">
                         </div>
+                        @if (session()->get('active')=='0')
+                        <a class="btn btn-success" href="{{ route('active') }}">{{ "active" }}</a>
+                        @else
+                        <a class="btn btn-danger" href="{{ route('deactive') }}" >{{ "deactive" }}</a>
+                        @endif
                         <div class="header_right d-flex justify-content-between align-items-center"
                             bis_skin_checked="1">
                             <div class="profile_info" bis_skin_checked="1">

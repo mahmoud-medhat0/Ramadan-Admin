@@ -26,7 +26,7 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
     'home' => false
 ]);
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','activtion'])->group(function () {
     Route::controller(AdminsController::class)->prefix('Admins')->group(function () {
         Route::get('/', 'index')->name('AdminsIndex');
         Route::get('add', 'create')->name('AdminsAdd');
@@ -49,5 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('pdf/{id}', 'print')->name('AnswersPrint');
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/active',[App\Http\Controllers\HomeController::class, 'active'])->name('active');
+    Route::get('/deactive',[App\Http\Controllers\HomeController::class, 'deactive'])->name('deactive');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 });
