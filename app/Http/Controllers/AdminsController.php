@@ -45,7 +45,11 @@ class AdminsController extends Controller
     public function store(AdminnStore $request)
     {
         $inputs = $request->except('_token');
-        Admins::create($inputs);
+        Admins::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password)
+        ]);
         return redirect()->back()->with('success','done');
     }
 
